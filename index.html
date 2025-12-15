@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mon tableau de VIE</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- iOS (icône + plein écran) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <!-- Optionnel: si tu ajoutes un icon plus tard -->
+  <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+  <header class="top">
+    <h1>Mon tableau de VIE</h1>
+  </header>
+
+  <main id="app"></main>
+
+  <button id="themeToggle" class="fab" title="Mode nuit/jour">🌙</button>
+
+  <script src="app.js"></script>
+
+  <script>
+    // Service worker = offline + installation PWA
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(console.error);
+      });
+    }
+  </script>
+</body>
+</html>
