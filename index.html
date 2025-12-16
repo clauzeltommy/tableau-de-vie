@@ -2,37 +2,44 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+
   <title>Mon tableau de VIE</title>
+  <meta name="theme-color" content="#f6f6f6" />
+
+  <!-- ✅ Icône iPhone (prioritaire pour "Ajouter à l’écran d’accueil") -->
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- ✅ Manifest (PWA) -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- (optionnel mais utile) -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Tableau VIE" />
 
   <link rel="stylesheet" href="style.css" />
-
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#ffffff" />
-
-  <!-- iOS (icône + plein écran) -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <!-- Optionnel: si tu ajoutes un icon plus tard -->
-  <link rel="apple-touch-icon" href="icon-192.png">
 </head>
+
 <body>
-  <header class="top">
+  <header class="topbar">
     <h1>Mon tableau de VIE</h1>
   </header>
 
-  <main id="app"></main>
+  <main id="app" class="container">
+    <!-- L'app se rend ici via app.js -->
+  </main>
 
-  <button id="themeToggle" class="fab" title="Mode nuit/jour">🌙</button>
+  <!-- Bouton mode nuit (si ton app.js le gère déjà, il sera utilisé) -->
+  <button id="themeToggle" class="themeToggle" aria-label="Basculer thème">🌙</button>
 
   <script src="app.js"></script>
 
+  <!-- ✅ Service Worker (offline) -->
   <script>
-    // Service worker = offline + installation PWA
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js").catch(console.error);
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
       });
     }
   </script>
